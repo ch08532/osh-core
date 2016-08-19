@@ -124,7 +124,7 @@ public class SOSTClient extends AbstractModule<SOSTClientConfig> implements ICli
         super.setConfiguration(config);
          
         // compute full host URL
-        sosEndpointUrl = "http://" + config.sos.remoteHost + ":" + config.sos.remotePort;
+        sosEndpointUrl = "https://" + config.sos.remoteHost + ":" + config.sos.remotePort;
         if (config.sos.resourcePath != null)
         {
             if (config.sos.resourcePath.charAt(0) != '/')

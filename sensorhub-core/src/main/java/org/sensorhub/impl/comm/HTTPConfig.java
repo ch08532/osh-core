@@ -30,7 +30,7 @@ public class HTTPConfig extends TCPConfig
         
     @DisplayInfo(desc="Path or resource or service relative to server root")
     public String resourcePath;
-    
+    public String protocol;
     
     public HTTPConfig()
     {

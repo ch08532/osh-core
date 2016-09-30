@@ -163,6 +163,7 @@ public class SOSTClient extends AbstractModule<SOSTClientConfig> implements ICli
                     request.setConnectTimeOut(connectConfig.connectTimeout);
                     request.setService(SOSUtils.SOS);
                     request.setGetServer(getSosEndpointUrl());
+                    request.setCredentials(config.sos.user, config.sos.password);
                     caps = (SOSServiceCapabilities)sosUtils.sendRequest(request, false);
                 }
                 catch (OWSException e)
@@ -319,6 +320,7 @@ public class SOSTClient extends AbstractModule<SOSTClientConfig> implements ICli
         InsertSensorRequest req = new InsertSensorRequest();
         req.setConnectTimeOut(config.connection.connectTimeout);
         req.setPostServer(getSosEndpointUrl());
+        req.setCredentials(config.sos.user, config.sos.password);
         req.setVersion("2.0");
         req.setProcedureDescription(sensor.getCurrentDescription());
         req.setProcedureDescriptionFormat(InsertSensorRequest.DEFAULT_PROCEDURE_FORMAT);

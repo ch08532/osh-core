@@ -113,8 +113,8 @@ public class SOSClient
             req.setVersion(grRequest.getVersion());
             req.setProcedureID(sensorUID);            
             
-            InputStream is = sosUtils.sendGetRequest(req).getInputStream();
-            DOMHelper dom = new DOMHelper(new BufferedInputStream(is), false);
+            HttpURLConnection conn = sosUtils.sendGetRequest(req);
+            DOMHelper dom = new DOMHelper(new BufferedInputStream(conn.getInputStream()), false);
             OWSExceptionReader.checkException(dom, dom.getBaseElement());
             Element smlElt = dom.getElement("description/SensorDescription/data/*");
             AbstractProcess smlDesc = new SMLUtils(SMLUtils.V2_0).readProcess(dom, smlElt);
@@ -152,8 +152,7 @@ public class SOSClient
         try
         {
             log.debug("Connecting to {}", sosUtils.buildURLQuery(grRequest));
-            HttpURLConnection conn = sosUtils.sendGetRequest(grRequest);
-            InputStream is = new BufferedInputStream(conn.getInputStream());
+            InputStream is = new BufferedInputStream(sosUtils.sendGetRequest(grRequest).getInputStream());
             parser.setInput(is);
         }
         catch (Exception e)

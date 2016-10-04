@@ -361,6 +361,7 @@ public class SOSTClient extends AbstractModule<SOSTClientConfig> implements ICli
         InsertResultTemplateRequest req = new InsertResultTemplateRequest();
         req.setConnectTimeOut(config.connection.connectTimeout);
         req.setPostServer(getSosEndpointUrl());
+        req.setCredentials(config.sos.user, config.sos.password);
         req.setVersion("2.0");
         req.setOffering(offering);
         req.setResultStructure(sensorOutput.getRecordDescription());
